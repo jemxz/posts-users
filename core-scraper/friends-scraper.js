@@ -13,20 +13,24 @@ const friendsImage_selector =
 module.exports = async function getFriends(page, target) {
   const friends = [];
 
-  await page.goto("https://facebook.com/" + target + "/friends");
-  await scrollToBottom(page, 15000);
-  const friendsName = await getText(friendsName_selector, page);
-  const friendsLink = await getLink(friendsLink_selector, page);
-  const friendsImage = await getImage(friendsImage_selector, page);
+  try {
+    await page.goto("https://facebook.com/" + target + "/friends");
+    await scrollToBottom(page, 15000);
+    const friendsName = await getText(friendsName_selector, page);
+    const friendsLink = await getLink(friendsLink_selector, page);
+    const friendsImage = await getImage(friendsImage_selector, page);
 
-  for (let i = 0; i < friendsName.length; i++) {
-    const friend = {
-      friendName: friendsName[i],
-      firendImage: friendsImage[i],
-      friendLink: friendsLink[i],
-    };
-    friends.push(friend);
+    for (let i = 0; i < friendsName.length; i++) {
+      const friend = {
+        friendName: friendsName[i],
+        firendImage: friendsImage[i],
+        friendLink: friendsLink[i + 1],
+      };
+      friends.push(friend);
+    }
+    console.log(friends);
+    return friends;
+  } catch (error) {
+    return [];
   }
-  console.log(friends);
-  return friends;
 };

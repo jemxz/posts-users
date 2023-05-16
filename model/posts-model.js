@@ -12,7 +12,7 @@ const postsOfUsers = new Schema({
   numberOfComments: String,
   numberOfShares: String,
   postSentiment: String,
-  AboutPoster: Array,
+  aboutPoster: Object,
   friendsOfPoster: Array,
   comments: [
     {

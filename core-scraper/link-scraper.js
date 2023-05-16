@@ -1,11 +1,5 @@
 module.exports = async function getLink(divSelector, page) {
   const links = [];
-  const elements = await page.$$(divSelector);
-  console.log(elements.length);
-  for (const element of elements) {
-    await element.hover();
-    // Wait for a brief moment if needed to observe the hover effect
-  }
 
   try {
     let div_selector = divSelector;
