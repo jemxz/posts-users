@@ -6,6 +6,7 @@ const cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
+const schedule = require("node-schedule");
 
 mongoose
   .connect("mongodb://localhost/facebook-data", {
@@ -52,3 +53,6 @@ async function createGroupsCollection() {
 }
 
 createGroupsCollection();
+schedule.scheduleJob("0 */8 * * *", () => {
+  createGroupsCollection();
+});

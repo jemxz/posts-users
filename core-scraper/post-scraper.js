@@ -23,6 +23,8 @@ module.exports = async function createGroups(page) {
   for (let j = 0; j < target.length; j++) {
     // NAVIGATION AND SCROLING TO THE DESIRED PAGE //
     try {
+      await page.setViewport({ width: 1366, height: 768 });
+
       var friends = await getFriends(page, target[j]);
       const mobileDevice = puppeteer.devices["iPhone X"];
       await page.emulate(mobileDevice);

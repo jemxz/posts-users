@@ -14,7 +14,10 @@ module.exports = async function getFriends(page, target) {
   const friends = [];
 
   try {
+    await page.setUserAgent("");
+    await page.setViewport({ width: 1920, height: 1080 });
     await page.goto("https://facebook.com/" + target + "/friends");
+    await page.setViewport({ width: 1366, height: 768 });
     await scrollToBottom(page, 15000);
     const friendsName = await getText(friendsName_selector, page);
     const friendsLink = await getLink(friendsLink_selector, page);
